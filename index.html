@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chris — Mortgage Technology Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0a0a;
+    --bg2: #131010;
+    --bg3: #1a1515;
+    --border: #2a1f1f;
+    --border2: #3d2a2a;
+    --accent: #782f40;
+    --accent2: #c4a35a;
+    --accent-glow: rgba(120,47,64,0.15);
+    --text: #f5f0e8;
+    --text2: #a89880;
+    --text3: #6b5a50;
+    --green: #c4a35a;
+    --yellow: #c4a35a;
+    --mono: 'DM Mono', monospace;
+    --display: 'Syne', sans-serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid noise texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(120,47,64,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120,47,64,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(11,14,19,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent2);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--text2);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(48px, 7vw, 86px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-family: var(--display);
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 400;
+    color: var(--text2);
+    margin-bottom: 32px;
+    line-height: 1.4;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: var(--text2);
+    max-width: 580px;
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: #9a3d52; transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--text2);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--text); border-color: var(--text3); }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--border2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    animation: slide 2s ease-in-out infinite;
+  }
+
+  @keyframes slide {
+    0% { left: -100%; }
+    50% { left: 0%; }
+    100% { left: 100%; }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 100px 48px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 200px;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  /* ── STACK SECTION ── */
+  #stack { background: var(--bg); }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    margin-top: 48px;
+  }
+
+  .stack-card {
+    background: var(--bg2);
+    padding: 28px 28px 24px;
+    transition: background 0.2s;
+    border: none;
+  }
+
+  .stack-card:hover { background: var(--bg3); }
+
+  .stack-role {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .stack-name {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .stack-desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg2); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .project-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 14px;
+  }
+
+  .project-title {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .project-outcomes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .project-outcomes li {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .project-outcomes li::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── CAPABILITIES ── */
+  #capabilities { background: var(--bg); }
+
+  .caps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 80px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 700px) {
+    .caps-grid { grid-template-columns: 1fr; }
+  }
+
+  .caps-group h3 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .caps-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .caps-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  .caps-list li strong {
+    color: var(--text);
+    font-weight: 500;
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg2); }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-item:first-of-type { border-top: 1px solid var(--border); }
+
+  .exp-meta {
+    padding-top: 4px;
+  }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    margin-bottom: 6px;
+  }
+
+  .exp-company {
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text2);
+  }
+
+  .exp-title {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .exp-desc {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text3);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+    padding: 120px 48px;
+  }
+
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::after { display: none; }
+  #contact .section-label::before {
+    content: '';
+    flex: none;
+    height: 1px;
+    background: var(--border);
+    width: 200px;
+  }
+
+  #contact h2 {
+    font-size: clamp(32px, 5vw, 56px);
+    margin-bottom: 20px;
+  }
+
+  #contact p {
+    color: var(--text2);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    font-size: 15px;
+  }
+
+  .email-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--accent2);
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    padding: 16px 32px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .email-display:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    #hero { padding: 100px 24px 80px; }
+    section { padding: 72px 24px; }
+    .exp-item { grid-template-columns: 1fr; gap: 16px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
+    #contact { padding: 80px 24px; }
+  }
+
+
+  /* ── SCROLL PROGRESS BAR ── */
+  #scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    z-index: 999;
+    transition: width 0.05s linear;
+  }
+
+  /* ── STAT COUNTERS ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 48px 0 0;
+  }
+
+  .stat-box {
+    background: var(--bg2);
+    padding: 32px 24px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .stat-box:hover { background: var(--bg3); }
+
+  .stat-number {
+    font-family: var(--display);
+    font-size: 44px;
+    font-weight: 800;
+    color: var(--accent2);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    line-height: 1.5;
+  }
+
+  /* ── PARALLAX HERO GLOW ── */
+  .hero-glow {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(120,47,64,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .hero-glow-2 {
+    position: absolute;
+    bottom: 10%;
+    right: 20%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,163,90,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  /* ── ACTIVE NAV ── */
+  .nav-links a.active { color: var(--accent2); }
+
+  /* ── SECTION REVEAL LINE ── */
+  .section-label {
+    overflow: hidden;
+  }
+
+  /* ── CARD TILT ── */
+  .stack-card, .project-card {
+    will-change: transform;
+  }
+
+  /* ── TIMELINE DOT ── */
+  .exp-item {
+    position: relative;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 44px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .exp-item.visible::before { opacity: 1; }
+
+  /* ── CURSOR GLOW ── */
+  #cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(120,47,64,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+    will-change: left, top;
+  }
+
+  /* ── TYPED CURSOR ── */
+  .typed-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    background: var(--accent2);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* status dot */
+  .status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent2);
+    box-shadow: 0 0 0 0 rgba(196,163,90,0.4);
+    animation: pulse 2s ease-in-out infinite;
+    margin-right: 4px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.4); }
+    50% { box-shadow: 0 0 0 5px rgba(196,163,90,0); }
+  }
+</style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+<div id="cursor-glow"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Christopher Albrizio</a>
+  <ul class="nav-links">
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="status-dot"></span>
+      Open to new opportunities · Tallahassee, FL · Remote
+    </div>
+    <h1>Christopher<br><span>Albrizio</span></h1>
+    <p class="hero-sub">Mortgage Technology · LOS Implementation · Training & Adoption</p>
+    <p class="hero-desc">
+      Mortgage technology specialist with 14+ years of progressive experience spanning loan processing, underwriting, closing, and business systems analysis. Implementation lead for Ocrolus, nCino SimpleNexus, and Encompass Partner Connect — deploying 23 Encompass Partner Connect integrations and building role-specific training programs for 80+ users across MLO, MLP, Underwriting, Processing, Operations, Closing, and Compliance teams.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats" style="padding: 60px 48px; background: var(--bg2); border-top: 1px solid var(--border);">
+  <div class="stats-row">
+    <div class="stat-box fade-in">
+      <div class="stat-number" data-target="14">0</div>
+      <div class="stat-label">Years in<br>Mortgage</div>
+    </div>
+    <div class="stat-box fade-in">
+      <div class="stat-number" data-target="80">0</div>
+      <div class="stat-label">Users<br>Onboarded</div>
+    </div>
+    <div class="stat-box fade-in">
+      <div class="stat-number" data-target="200">0</div>
+      <div class="stat-label">Loans / Month<br>Through Platform</div>
+    </div>
+    <div class="stat-box fade-in">
+      <div class="stat-number" data-target="95">0</div>
+      <div class="stat-label">% Processor &amp;<br>UW Adoption</div>
+    </div>
+    <div class="stat-box fade-in">
+      <div class="stat-number" data-target="98">0</div>
+      <div class="stat-label">% System<br>Uptime</div>
+    </div>
+    <div class="stat-box fade-in">
+      <div class="stat-number" data-target="23">0</div>
+      <div class="stat-label">Partner Connect<br>Integrations</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- STACK -->
+<section id="stack">
+  <div class="section-label">Core Technology Stack</div>
+  <h2>Systems I Work In</h2>
+  <div class="stack-grid">
+    <div class="stack-card fade-in">
+      <div class="stack-role">Loan Origination System</div>
+      <div class="stack-name">Encompass Desktop</div>
+      <div class="stack-desc">ICE Mortgage Technology LOS. Full lifecycle ownership: configuration, deployment, integration testing, end-user training, ongoing troubleshooting support, and feature enhancement rollouts across 8 Partner Connect integrations.</div>
+    </div>
+    <div class="stack-card fade-in">
+      <div class="stack-role">Point of Sale / Borrower Portal</div>
+      <div class="stack-name">nCino SimpleNexus</div>
+      <div class="stack-desc">Borrower-facing POS platform. Full lifecycle: configuration, deployment, integration testing, role-specific training, post-launch troubleshooting, and ongoing feature enhancement coordination with nCino.</div>
+    </div>
+    <div class="stack-card fade-in">
+      <div class="stack-role">Document Automation</div>
+      <div class="stack-name">Ocrolus</div>
+      <div class="stack-desc">AI-powered doc processing and income calculation. Full lifecycle ownership: configuration, deployment, UAT, role-specific training across all user groups, ongoing troubleshooting support, and continuous feature enhancement adoption including Fannie Mae validated income calculator tools.</div>
+    </div>
+    <div class="stack-card fade-in">
+      <div class="stack-role">Verification of Assets</div>
+      <div class="stack-name">Finicity</div>
+      <div class="stack-desc">VOA/VOIE platform integration. Workflow mapping and borrower verification process design within the broader loan pipeline.</div>
+    </div>
+    <div class="stack-card fade-in">
+      <div class="stack-role">Verification of Income & Employment</div>
+      <div class="stack-name">The Work Number · Equifax</div>
+      <div class="stack-desc">VOIE data sourcing. Employer name matching logic, duplicate record resolution, and integration with paystub-based income verification.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Selected Work</div>
+  <h2>Key Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-tag">LOS · Doc Automation · Full Lifecycle</div>
+      <div class="project-title">Ocrolus–Encompass Integration Rollout</div>
+      <div class="project-desc">Owned the full lifecycle of the Ocrolus implementation — from initial configuration and deployment through UAT, role-specific training for all user groups, post-launch troubleshooting and support, and ongoing feature enhancement adoption. Diagnosed and resolved adoption failures, rebuilt training materials, and established the correct doc upload and income calculation pathway across the organization.</div>
+      <ul class="project-outcomes">
+        <li>Served as primary strategic input for implementation direction — all user workflows designed and built by me; management trusted me to architect a plan that fit within existing operations</li>
+        <li>Onboarded 80+ users across MLO, MLP, Processor, Underwriter, Operations, and Management teams; 200+ loans/month through platform</li>
+        <li>Achieved 95% adoption among processors/underwriters and 75% MLO adoption in first rollout cycle</li>
+        <li>Designated institution-wide SME for both Ocrolus and nCino SimpleNexus — primary escalation point and expert resource for all user groups: MLOs, MLPs, Processors, Underwriters, Operations Managers, and Sales Managers</li>
+        <li>Created in-depth income calculation and transaction analysis guides used across all roles</li>
+        <li>Drove adoption of Fannie Mae validated income calculator tools — trained all user groups to identify Fannie Mae and Freddie Mac rep &amp; warrant relief eligibility, contributing to a 225% increase in rep &amp; warrant relief for the institution</li>
+      </ul>
+    </div>
+
+
+
+    <div class="project-card fade-in">
+      <div class="project-tag">Systems Implementation · Full Lifecycle Ownership</div>
+      <div class="project-title">SimpleNexus POS — Configure, Deploy, Test, Train, Support & Enhance</div>
+      <div class="project-desc">Owned the complete SimpleNexus lifecycle — configuring the platform, coordinating deployment, executing end-to-end UAT and regression testing, delivering role-specific training for all user groups (MLOs, MLPs, Processors, Operations Managers, Sales Managers), providing ongoing troubleshooting support post-launch, and continuously evaluating and rolling out feature enhancements in partnership with nCino.</div>
+      <ul class="project-outcomes">
+        <li>Executed full UAT through production: authored test scripts, ran scenario-based cases, validated data integrity at each handoff — reducing system errors by 20% and accelerating release cycles by 15%</li>
+        <li>Diagnosed post-launch integration failures including doc routing mismatches, missing eFolder items, and submission sync errors</li>
+        <li>Built role-specific FAQ guides for recurring MLO, MLP, Processor, Underwriter, and Operations issues — reducing repeat escalations</li>
+        <li>Designed and delivered role-specific training for all user groups: MLOs (submission workflow), MLPs/processors (doc queue management), and borrower-facing staff (portal guidance)</li>
+        <li>Standardized MLO communication around borrower portal submissions and document status visibility</li>
+        <li>Mapped and documented the full SimpleNexus → Ocrolus → eFolder workflow as a reference artifact for onboarding and audits</li>
+      </ul>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-tag">Training · Knowledge Management</div>
+      <div class="project-title">Rollout Communications, Quick References & Training Program</div>
+      <div class="project-desc">Designed and executed full rollout communication strategies for each platform implementation — producing go-live announcements for executive leadership and management, quick reference guides for all staff, and conducting direct pre-launch meetings with department heads across Underwriting, Processing, Operations, Closing, and Compliance. Role-specific training delivered for every user group across the organization.</div>
+      <ul class="project-outcomes">
+        <li>Authored and distributed go-live announcements to management and all-staff across UW, Processing, Operations, Closing, and Compliance</li>
+        <li>Produced role-specific quick reference guides for MLOs, MLPs, Processors, Underwriters, Operations Managers, and Sales Managers</li>
+        <li>Conducted direct pre-launch briefings with department management and team leads across all affected teams</li>
+        <li>25% increase in system proficiency and adoption across trained teams</li>
+        <li>Ongoing refresher trainings for role-specific groups and all-org sessions; regular Q&amp;A calls by role and org-wide</li>
+        <li>Scribe-based step-by-step tutorials and Snagit video recordings for asynchronous reference</li>
+        <li>Delivered in-person, Teams, and Zoom training sessions across all user groups</li>
+        <li>90% same-day support resolution rate maintained post-launch across all platforms</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="section-label">What I Bring</div>
+  <h2>Capabilities</h2>
+  <div class="caps-grid">
+    <div class="caps-group fade-in">
+      <h3>Systems & Implementation</h3>
+      <ul class="caps-list">
+        <li><strong>LOS Configuration</strong> Encompass Desktop workflow & eFolder design</li>
+        <li><strong>POS Integration</strong> nCino SimpleNexus deployment & handoff mapping</li>
+        <li><strong>Doc Automation</strong> Ocrolus income calc, Inspect, Fannie Mae calc</li>
+        <li><strong>VOIE / VOA</strong> Work Number & Finicity integration</li>
+        <li><strong>Workflow Mapping</strong> End-to-end loan lifecycle process design</li>
+      </ul>
+    </div>
+    <div class="caps-group fade-in">
+      <h3>Analysis & Compliance</h3>
+      <ul class="caps-list">
+        <li><strong>Gap Analysis</strong> Adoption failure diagnosis & root cause identification</li>
+        <li><strong>Regulatory Compliance</strong> Policy alignment, documentation & audit support</li>
+        <li><strong>Requirements Gathering</strong> Business rules documentation & stakeholder alignment</li>
+        <li><strong>Data Validation</strong> Income verification accuracy & record reconciliation</li>
+        <li><strong>Regulatory Reporting</strong> Compliance deliverable design & documentation</li>
+      </ul>
+    </div>
+    <div class="caps-group fade-in">
+      <h3>Training & Enablement</h3>
+      <ul class="caps-list">
+        <li><strong>Curriculum Design</strong> Role-based training for MLO, MLP, processor tracks</li>
+        <li><strong>Quick References</strong> Branded one-page guides and job aids</li>
+        <li><strong>Scribe Tutorials</strong> Step-by-step platform walkthroughs</li>
+        <li><strong>Live Facilitation</strong> Teams & Zoom-based training delivery</li>
+        <li><strong>Adoption Tracking</strong> Measuring utilization and identifying blockers</li>
+      </ul>
+    </div>
+    <div class="caps-group fade-in">
+      <h3>Tools & Platforms</h3>
+      <ul class="caps-list">
+        <li><strong>Office 365</strong> Word, Excel, PowerPoint, Teams</li>
+        <li><strong>Documentation</strong> Scribe, Snagit, Zoom</li>
+        <li><strong>Compliance Tools</strong> Regulatory documentation & audit reporting</li>
+        <li><strong>AI-Assisted Analysis</strong> LLM-assisted workflow design & doc automation</li>
+        <li><strong>Mortgage Platforms</strong> ICE, nCino, Ocrolus, Finicity, Equifax</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work History</div>
+  <h2>Experience</h2>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-date">March 2023 – Present</div>
+      <div class="exp-company">Hancock Whitney Bank</div>
+    </div>
+    <div>
+      <div class="exp-title">BSA / Implementation &amp; Training Lead</div>
+      <p class="exp-desc">
+        Institution-wide implementation lead for Ocrolus, nCino SimpleNexus, and Encompass Partner Connect — owning the full lifecycle: configuration, deployment, integration testing, role-specific training, post-launch troubleshooting, and ongoing feature enhancement rollout. Designated SME for both Ocrolus and nCino SimpleNexus. Configured and deployed 23 Encompass Partner Connect integrations including Finicity, The Work Number by Equifax, DataVerify, Optimal Blue (pricing engine), Mortgage Insurance Center, Halcyon 8821 Tax Services, ServiceLink National Flood, and Salesforce-to-Encompass. Trained all user groups — MLOs, MLPs, Processors, Underwriters, Operations Managers, Sales Managers — onboarding 80+ users supporting 200+ loans per month. Achieved 95% processor/underwriter adoption and 75% MLO adoption in the first rollout cycle. Reduced system errors by 20%, accelerated release cycles by 15%, and maintained 98% system uptime with a 90% same-day support resolution rate.
+      </p>
+      <div class="exp-tags">
+        <span class="tag">Encompass</span>
+        <span class="tag">SimpleNexus</span>
+        <span class="tag">Ocrolus</span>
+        <span class="tag">Finicity</span>
+        <span class="tag">Work Number</span>
+        <span class="tag">Training Design</span>
+        <span class="tag">Process Improvement</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-date">Aug 2021 – Mar 2023</div>
+      <div class="exp-company">Hancock Whitney Bank</div>
+    </div>
+    <div>
+      <div class="exp-title">Mortgage Loan Origination Production Specialist</div>
+      <p class="exp-desc">Supported loan originators across end-to-end workflows including application processing, income calculation, and cost estimation for accurate loan structuring.</p>
+      <div class="exp-tags">
+        <span class="tag">Loan Processing</span>
+        <span class="tag">Income Calculation</span>
+        <span class="tag">Pipeline Management</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-date">Feb 2021 – Aug 2021</div>
+      <div class="exp-company">Hancock Whitney Bank</div>
+    </div>
+    <div>
+      <div class="exp-title">Mortgage Loan Underwriter</div>
+      <p class="exp-desc">Underwrote conventional purchase and refinance loans using DU and LP — independently issuing conditions, analyzing borrower credit and income profiles, and ensuring compliance with agency guidelines. Managed a pipeline of 10–20 loans per month.</p>
+      <div class="exp-tags">
+        <span class="tag">DU / LP</span>
+        <span class="tag">Credit Analysis</span>
+        <span class="tag">Agency Guidelines</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-date">Aug 2020 – Feb 2021</div>
+      <div class="exp-company">Capital City Home Loans</div>
+    </div>
+    <div>
+      <div class="exp-title">Mortgage Closer</div>
+      <p class="exp-desc">Managed full closing package preparation for purchase and refinance transactions — coordinating with title companies, reviewing closing disclosures, and ensuring regulatory compliance through funding. Closed approximately 50 loans per month.</p>
+      <div class="exp-tags">
+        <span class="tag">Closing Documents</span>
+        <span class="tag">Title Coordination</span>
+        <span class="tag">Regulatory Compliance</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-date">May 2012 – Jul 2020</div>
+      <div class="exp-company">Hancock Whitney Bank</div>
+    </div>
+    <div>
+      <div class="exp-title">Senior Mortgage Loan Processor</div>
+      <p class="exp-desc">Processed conventional, FHA, VA, and USDA loans from application through clear-to-close over an 8-year tenure — building deep expertise in mortgage origination workflows, compliance requirements, documentation standards, and investor guidelines. The operational foundation across all loan types that directly informs every system implementation and training initiative today.</p>
+      <div class="exp-tags">
+        <span class="tag">Conventional / FHA / VA / USDA</span>
+        <span class="tag">Application to CTC</span>
+        <span class="tag">Compliance</span>
+        <span class="tag">8-Year Tenure</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2>Let's Talk</h2>
+  <p>Open to BSA, implementation consultant, mortgage tech product, and adjacent roles. Based in Tallahassee, FL — open to remote.</p>
+  <a href="mailto:chrisalbrizio@gmail.com" class="email-display">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+    chrisalbrizio@gmail.com
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Christopher Albrizio · BSA / Implementation &amp; Training Lead · Tallahassee, FL</span>
+  <span>Built for portability — deploy anywhere</span>
+</footer>
+
+<script>
+  // ── SCROLL PROGRESS ──
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrolled / maxScroll * 100) + '%';
+  }, { passive: true });
+
+  // ── CURSOR GLOW ──
+  const cursorGlow = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', (e) => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+  }, { passive: true });
+
+  // ── HERO PARALLAX GLOW ──
+  const heroGlow = document.querySelector('.hero-glow');
+  const heroGlow2 = document.querySelector('.hero-glow-2');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (heroGlow) heroGlow.style.transform = `translateY(${y * 0.15}px)`;
+    if (heroGlow2) heroGlow2.style.transform = `translateY(${y * 0.08}px)`;
+  }, { passive: true });
+
+  // ── ACTIVE NAV HIGHLIGHT ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => navObserver.observe(s));
+
+  // ── FADE IN + COUNTER ANIMATION ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const delay = 80 * (entry.target.dataset.delay || 0);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+
+          // Animate counters
+          const counter = entry.target.querySelector('[data-target]');
+          if (counter) {
+            const target = +counter.dataset.target;
+            const suffix = counter.dataset.suffix || '';
+            const duration = 1400;
+            const step = target / (duration / 16);
+            let current = 0;
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              counter.textContent = Math.floor(current) + suffix;
+            }, 16);
+          }
+        }, delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach((el, i) => {
+    el.dataset.delay = i % 4;
+    observer.observe(el);
+  });
+
+  // ── SUBTLE CARD TILT ON HOVER ──
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-2px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // ── TYPED HERO SUBTITLE ──
+  const heroSub = document.querySelector('.hero-sub');
+  if (heroSub) {
+    const text = heroSub.textContent;
+    heroSub.textContent = '';
+    const cursor = document.createElement('span');
+    cursor.className = 'typed-cursor';
+    heroSub.appendChild(cursor);
+    let i = 0;
+    const type = () => {
+      if (i < text.length) {
+        heroSub.insertBefore(document.createTextNode(text[i]), cursor);
+        i++;
+        setTimeout(type, 28);
+      }
+    };
+    setTimeout(type, 600);
+  }
+</script>
+</body>
+</html>
