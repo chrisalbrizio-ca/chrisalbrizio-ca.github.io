@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -26,847 +27,845 @@
     --body: 'DM Sans', sans-serif;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--body);
-    font-size: 15px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* Grid noise texture */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(120,47,64,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(120,47,64,0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(11,14,19,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent2);
-    letter-spacing: 0.08em;
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    color: var(--text2);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--text); }
-
-  /* ── HERO ── */
-  #hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 48px 80px;
-    z-index: 1;
-  }
-
-  .hero-inner {
-    max-width: 900px;
-  }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-family: var(--display);
-    font-size: clamp(48px, 7vw, 86px);
-    font-weight: 800;
-    line-height: 1.0;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-
-  h1 span {
-    color: var(--accent);
-  }
-
-  .hero-sub {
-    font-family: var(--display);
-    font-size: clamp(18px, 2.5vw, 26px);
-    font-weight: 400;
-    color: var(--text2);
-    margin-bottom: 32px;
-    line-height: 1.4;
-  }
-
-  .hero-desc {
-    font-size: 15px;
-    color: var(--text2);
-    max-width: 580px;
-    margin-bottom: 48px;
-    line-height: 1.8;
-  }
-
-  .hero-ctas {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    background: var(--accent);
-    color: #fff;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .btn-primary:hover { background: #9a3d52; transform: translateY(-1px); }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    background: transparent;
-    color: var(--text2);
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--border2);
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .btn-secondary:hover { color: var(--text); border-color: var(--text3); }
-
-  /* ── SCROLL INDICATOR ── */
-  .scroll-hint {
-    position: absolute;
-    bottom: 40px;
-    left: 48px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.1em;
-  }
-
-  .scroll-line {
-    width: 40px;
-    height: 1px;
-    background: var(--border2);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .scroll-line::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--accent);
-    animation: slide 2s ease-in-out infinite;
-  }
-
-  @keyframes slide {
-    0% { left: -100%; }
-    50% { left: 0%; }
-    100% { left: 100%; }
-  }
-
-  /* ── SECTIONS ── */
-  section {
-    position: relative;
-    z-index: 1;
-    padding: 100px 48px;
-    border-top: 1px solid var(--border);
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 48px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    max-width: 200px;
-  }
-
-  h2 {
-    font-family: var(--display);
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-
-  /* ── STACK SECTION ── */
-  #stack { background: var(--bg); }
-
-  .stack-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1px;
-    border: 1px solid var(--border);
-    margin-top: 48px;
-  }
-
-  .stack-card {
-    background: var(--bg2);
-    padding: 28px 28px 24px;
-    transition: background 0.2s;
-    border: none;
-  }
-
-  .stack-card:hover { background: var(--bg3); }
-
-  .stack-role {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
-
-  .stack-name {
-    font-family: var(--display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-
-  .stack-desc {
-    font-size: 13px;
-    color: var(--text2);
-    line-height: 1.6;
-  }
-
-  /* ── PROJECTS ── */
-  #projects { background: var(--bg2); }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 24px;
-    margin-top: 48px;
-  }
-
-  .project-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  .project-card:hover { border-color: var(--border2); transform: translateY(-2px); }
-  .project-card:hover::before { transform: scaleX(1); }
-
-  .project-tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 14px;
-  }
-
-  .project-title {
-    font-family: var(--display);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-
-  .project-desc {
-    font-size: 13px;
-    color: var(--text2);
-    line-height: 1.7;
-    margin-bottom: 20px;
-  }
-
-  .project-outcomes {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .project-outcomes li {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text2);
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .project-outcomes li::before {
-    content: '→';
-    color: var(--accent);
-    flex-shrink: 0;
-  }
-
-  /* ── CAPABILITIES ── */
-  #capabilities { background: var(--bg); }
-
-  .caps-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px 80px;
-    margin-top: 48px;
-  }
-
-  @media (max-width: 700px) {
-    .caps-grid { grid-template-columns: 1fr; }
-  }
-
-  .caps-group h3 {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .caps-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .caps-list li {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    font-size: 14px;
-    color: var(--text2);
-  }
-
-  .caps-list li strong {
-    color: var(--text);
-    font-weight: 500;
-    min-width: 160px;
-    flex-shrink: 0;
-  }
-
-  /* ── EXPERIENCE ── */
-  #experience { background: var(--bg2); }
-
-  .exp-item {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 40px;
-    padding: 40px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .exp-item:first-of-type { border-top: 1px solid var(--border); }
-
-  .exp-meta {
-    padding-top: 4px;
-  }
-
-  .exp-date {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--text3);
-    margin-bottom: 6px;
-  }
-
-  .exp-company {
-    font-family: var(--display);
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text2);
-  }
-
-  .exp-title {
-    font-family: var(--display);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-
-  .exp-desc {
-    font-size: 14px;
-    color: var(--text2);
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-
-  .exp-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    color: var(--text3);
-    letter-spacing: 0.05em;
-  }
-
-  /* ── CONTACT ── */
-  #contact {
-    background: var(--bg);
-    text-align: center;
-    padding: 120px 48px;
-  }
-
-  #contact .section-label { justify-content: center; }
-  #contact .section-label::after { display: none; }
-  #contact .section-label::before {
-    content: '';
-    flex: none;
-    height: 1px;
-    background: var(--border);
-    width: 200px;
-  }
-
-  #contact h2 {
-    font-size: clamp(32px, 5vw, 56px);
-    margin-bottom: 20px;
-  }
-
-  #contact p {
-    color: var(--text2);
-    max-width: 480px;
-    margin: 0 auto 48px;
-    font-size: 15px;
-  }
-
-  .email-display {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--mono);
-    font-size: 15px;
-    color: var(--accent2);
-    text-decoration: none;
-    border: 1px solid var(--accent);
-    padding: 16px 32px;
-    position: relative;
-    box-shadow: 0 0 18px rgba(120,47,64,0.35), 0 0 40px rgba(120,47,64,0.15), inset 0 0 12px rgba(120,47,64,0.08);
-    animation: email-pulse 2.5s ease-in-out infinite;
-    transition: box-shadow 0.3s, color 0.2s, border-color 0.2s;
-  }
-
-  .email-display:hover {
-    border-color: var(--accent2);
-    color: var(--accent2);
-    box-shadow: 0 0 28px rgba(196,163,90,0.4), 0 0 60px rgba(196,163,90,0.2), inset 0 0 16px rgba(196,163,90,0.1);
-  }
-
-  @keyframes email-pulse {
-    0%, 100% { box-shadow: 0 0 18px rgba(120,47,64,0.35), 0 0 40px rgba(120,47,64,0.15), inset 0 0 12px rgba(120,47,64,0.08); }
-    50%       { box-shadow: 0 0 28px rgba(120,47,64,0.55), 0 0 60px rgba(120,47,64,0.25), inset 0 0 16px rgba(120,47,64,0.12); }
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 24px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  footer span {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.08em;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    #hero { padding: 100px 24px 80px; }
-    section { padding: 72px 24px; }
-    .exp-item { grid-template-columns: 1fr; gap: 16px; }
-    footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
-    #contact { padding: 80px 24px; }
-  }
-
-
-
-  /* ── HERO PHOTO ── */
-  .hero-photo-wrap {
-    position: absolute;
-    right: 80px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-  }
-
-  .hero-photo {
-    width: 260px;
-    height: 320px;
-    object-fit: cover;
-    object-position: center top;
-    border: 2px solid var(--accent);
-    box-shadow: 0 0 30px rgba(120,47,64,0.3), 0 0 60px rgba(120,47,64,0.1);
-    display: block;
-  }
-
-  .hero-photo-wrap::before {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    right: -12px;
-    bottom: -12px;
-    border: 1px solid var(--border2);
-    z-index: -1;
-  }
-
-  @media (max-width: 900px) {
-    .hero-photo-wrap { display: none; }
-  }
-
-  /* ── SCROLL PROGRESS BAR ── */
-  #scroll-progress {
-    position: fixed;
-    top: 0; left: 0;
-    height: 2px;
-    width: 0%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    z-index: 999;
-    transition: width 0.05s linear;
-  }
-
-  /* ── STAT COUNTERS ── */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin: 48px 0 0;
-  }
-
-  .stat-box {
-    background: var(--bg2);
-    padding: 32px 24px;
-    text-align: center;
-    transition: background 0.2s;
-  }
-
-  .stat-box:hover { background: var(--bg3); }
-
-  .stat-number {
-    font-family: var(--display);
-    font-size: 44px;
-    font-weight: 800;
-    color: var(--accent2);
-    line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text3);
-    line-height: 1.5;
-  }
-
-  /* ── PARALLAX HERO GLOW ── */
-  .hero-glow {
-    position: absolute;
-    top: 20%;
-    right: 5%;
-    width: 480px;
-    height: 480px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(120,47,64,0.12) 0%, transparent 70%);
-    pointer-events: none;
-    will-change: transform;
-  }
-
-  .hero-glow-2 {
-    position: absolute;
-    bottom: 10%;
-    right: 20%;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(196,163,90,0.07) 0%, transparent 70%);
-    pointer-events: none;
-    will-change: transform;
-  }
-
-  /* ── ACTIVE NAV ── */
-  .nav-links a.active { color: var(--accent2); }
-
-  /* ── SECTION REVEAL LINE ── */
-  .section-label {
-    overflow: hidden;
-  }
-
-  /* ── CARD TILT ── */
-  .stack-card, .project-card {
-    will-change: transform;
-  }
-
-  /* ── TIMELINE DOT ── */
-  .exp-item {
-    position: relative;
-  }
-
-  .exp-item::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    top: 44px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
-
-  .exp-item.visible::before { opacity: 1; }
-
-  /* ── CURSOR GLOW ── */
-  #cursor-glow {
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(120,47,64,0.06) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s;
-    will-change: left, top;
-  }
-
-  /* ── TYPED CURSOR ── */
-  .typed-cursor {
-    display: inline-block;
-    width: 3px;
-    height: 0.85em;
-    background: var(--accent2);
-    margin-left: 4px;
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-
-  /* ── LETTER DROP ANIMATION ── */
-  .letter-drop-wrap {
-    display: inline;
-  }
-
-  .letter-drop-wrap .ld {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(-40px) rotate(-4deg);
-    transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .letter-drop-wrap.drop-active .ld {
-    opacity: 1;
-    transform: translateY(0) rotate(0deg);
-  }
-
-  /* space chars */
-  .letter-drop-wrap .ld-space {
-    display: inline-block;
-    width: 0.28em;
-  }
-
-  /* ── ANIMATIONS ── */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(-28px) scaleY(0.92);
-    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0) scaleY(1);
-  }
-
-  /* Letter drop effect for section headers */
-  .section-label .label-text {
-    display: inline-block;
-  }
-
-  .section-label .label-text span {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .section-label.letters-visible .label-text span {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Hero title letter drop */
-  h1 .word {
-    display: inline-block;
-    overflow: hidden;
-  }
-
-  h1 .letter {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(-100%);
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  h1.letters-loaded .letter {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Stack card drop */
-  .stack-card {
-    transition: background 0.2s, opacity 0.45s cubic-bezier(0.22,1,0.36,1), transform 0.45s cubic-bezier(0.22,1,0.36,1);
-  }
-
-  /* Project card drop */
-  .project-card {
-    transition: border-color 0.2s, transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.45s cubic-bezier(0.22,1,0.36,1);
-  }
-
-  /* status dot */
-  .status-dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent2);
-    box-shadow: 0 0 0 0 rgba(196,163,90,0.4);
-    animation: pulse 2s ease-in-out infinite;
-    margin-right: 4px;
-  }
-
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.4); }
-    50% { box-shadow: 0 0 0 5px rgba(196,163,90,0); }
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: var(–body);
+font-size: 15px;
+line-height: 1.7;
+overflow-x: hidden;
+}
+
+/* Grid noise texture */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image:
+linear-gradient(rgba(120,47,64,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(120,47,64,0.04) 1px, transparent 1px);
+background-size: 40px 40px;
+pointer-events: none;
+z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 18px 48px;
+background: rgba(11,14,19,0.85);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(–border);
+}
+
+.nav-logo {
+font-family: var(–mono);
+font-size: 13px;
+color: var(–accent2);
+letter-spacing: 0.08em;
+text-decoration: none;
+}
+
+.nav-links {
+display: flex;
+gap: 32px;
+list-style: none;
+}
+
+.nav-links a {
+font-family: var(–mono);
+font-size: 12px;
+letter-spacing: 0.1em;
+color: var(–text2);
+text-decoration: none;
+text-transform: uppercase;
+transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(–text); }
+
+/* ── HERO ── */
+#hero {
+position: relative;
+min-height: 100vh;
+display: flex;
+align-items: center;
+padding: 120px 48px 80px;
+z-index: 1;
+}
+
+.hero-inner {
+max-width: 900px;
+}
+
+.hero-tag {
+font-family: var(–mono);
+font-size: 12px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 24px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.hero-tag::before {
+content: ‘’;
+display: inline-block;
+width: 28px;
+height: 1px;
+background: var(–accent);
+}
+
+h1 {
+font-family: var(–display);
+font-size: clamp(48px, 7vw, 86px);
+font-weight: 800;
+line-height: 1.0;
+letter-spacing: -0.02em;
+color: var(–text);
+margin-bottom: 12px;
+}
+
+h1 span {
+color: var(–accent);
+}
+
+.hero-sub {
+font-family: var(–display);
+font-size: clamp(18px, 2.5vw, 26px);
+font-weight: 400;
+color: var(–text2);
+margin-bottom: 32px;
+line-height: 1.4;
+}
+
+.hero-desc {
+font-size: 15px;
+color: var(–text2);
+max-width: 580px;
+margin-bottom: 48px;
+line-height: 1.8;
+}
+
+.hero-ctas {
+display: flex;
+gap: 16px;
+flex-wrap: wrap;
+}
+
+.btn-primary {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 12px 28px;
+background: var(–accent);
+color: #fff;
+font-family: var(–mono);
+font-size: 12px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+text-decoration: none;
+border: none;
+cursor: pointer;
+transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover { background: #9a3d52; transform: translateY(-1px); }
+
+.btn-secondary {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 12px 28px;
+background: transparent;
+color: var(–text2);
+font-family: var(–mono);
+font-size: 12px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+text-decoration: none;
+border: 1px solid var(–border2);
+cursor: pointer;
+transition: color 0.2s, border-color 0.2s;
+}
+
+.btn-secondary:hover { color: var(–text); border-color: var(–text3); }
+
+/* ── SCROLL INDICATOR ── */
+.scroll-hint {
+position: absolute;
+bottom: 40px;
+left: 48px;
+display: flex;
+align-items: center;
+gap: 10px;
+font-family: var(–mono);
+font-size: 11px;
+color: var(–text3);
+letter-spacing: 0.1em;
+}
+
+.scroll-line {
+width: 40px;
+height: 1px;
+background: var(–border2);
+position: relative;
+overflow: hidden;
+}
+
+.scroll-line::after {
+content: ‘’;
+position: absolute;
+top: 0; left: -100%;
+width: 100%;
+height: 100%;
+background: var(–accent);
+animation: slide 2s ease-in-out infinite;
+}
+
+@keyframes slide {
+0% { left: -100%; }
+50% { left: 0%; }
+100% { left: 100%; }
+}
+
+/* ── SECTIONS ── */
+section {
+position: relative;
+z-index: 1;
+padding: 100px 48px;
+border-top: 1px solid var(–border);
+}
+
+.section-label {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 48px;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.section-label::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: var(–border);
+max-width: 200px;
+}
+
+h2 {
+font-family: var(–display);
+font-size: clamp(28px, 4vw, 42px);
+font-weight: 700;
+letter-spacing: -0.02em;
+line-height: 1.1;
+margin-bottom: 16px;
+}
+
+/* ── STACK SECTION ── */
+#stack { background: var(–bg); }
+
+.stack-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+gap: 1px;
+border: 1px solid var(–border);
+margin-top: 48px;
+}
+
+.stack-card {
+background: var(–bg2);
+padding: 28px 28px 24px;
+transition: background 0.2s;
+border: none;
+}
+
+.stack-card:hover { background: var(–bg3); }
+
+.stack-role {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 10px;
+}
+
+.stack-name {
+font-family: var(–display);
+font-size: 18px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 8px;
+}
+
+.stack-desc {
+font-size: 13px;
+color: var(–text2);
+line-height: 1.6;
+}
+
+/* ── PROJECTS ── */
+#projects { background: var(–bg2); }
+
+.projects-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+gap: 24px;
+margin-top: 48px;
+}
+
+.project-card {
+background: var(–bg);
+border: 1px solid var(–border);
+padding: 32px;
+position: relative;
+overflow: hidden;
+transition: border-color 0.2s, transform 0.2s;
+}
+
+.project-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: var(–accent);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.3s ease;
+}
+
+.project-card:hover { border-color: var(–border2); transform: translateY(-2px); }
+.project-card:hover::before { transform: scaleX(1); }
+
+.project-tag {
+font-family: var(–mono);
+font-size: 10px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–text3);
+margin-bottom: 14px;
+}
+
+.project-title {
+font-family: var(–display);
+font-size: 20px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 12px;
+line-height: 1.2;
+}
+
+.project-desc {
+font-size: 13px;
+color: var(–text2);
+line-height: 1.7;
+margin-bottom: 20px;
+}
+
+.project-outcomes {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.project-outcomes li {
+font-family: var(–mono);
+font-size: 12px;
+color: var(–text2);
+display: flex;
+align-items: flex-start;
+gap: 8px;
+}
+
+.project-outcomes li::before {
+content: ‘→’;
+color: var(–accent);
+flex-shrink: 0;
+}
+
+/* ── CAPABILITIES ── */
+#capabilities { background: var(–bg); }
+
+.caps-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 48px 80px;
+margin-top: 48px;
+}
+
+@media (max-width: 700px) {
+.caps-grid { grid-template-columns: 1fr; }
+}
+
+.caps-group h3 {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 20px;
+padding-bottom: 10px;
+border-bottom: 1px solid var(–border);
+}
+
+.caps-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.caps-list li {
+display: flex;
+align-items: baseline;
+gap: 12px;
+font-size: 14px;
+color: var(–text2);
+}
+
+.caps-list li strong {
+color: var(–text);
+font-weight: 500;
+min-width: 160px;
+flex-shrink: 0;
+}
+
+/* ── EXPERIENCE ── */
+#experience { background: var(–bg2); }
+
+.exp-item {
+display: grid;
+grid-template-columns: 200px 1fr;
+gap: 40px;
+padding: 40px 0;
+border-bottom: 1px solid var(–border);
+}
+
+.exp-item:first-of-type { border-top: 1px solid var(–border); }
+
+.exp-meta {
+padding-top: 4px;
+}
+
+.exp-date {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.1em;
+color: var(–text3);
+margin-bottom: 6px;
+}
+
+.exp-company {
+font-family: var(–display);
+font-size: 14px;
+font-weight: 700;
+color: var(–text2);
+}
+
+.exp-title {
+font-family: var(–display);
+font-size: 20px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 12px;
+}
+
+.exp-desc {
+font-size: 14px;
+color: var(–text2);
+line-height: 1.7;
+margin-bottom: 16px;
+}
+
+.exp-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+}
+
+.tag {
+font-family: var(–mono);
+font-size: 11px;
+padding: 4px 10px;
+background: var(–bg3);
+border: 1px solid var(–border);
+color: var(–text3);
+letter-spacing: 0.05em;
+}
+
+/* ── CONTACT ── */
+#contact {
+background: var(–bg);
+text-align: center;
+padding: 120px 48px;
+}
+
+#contact .section-label { justify-content: center; }
+#contact .section-label::after { display: none; }
+#contact .section-label::before {
+content: ‘’;
+flex: none;
+height: 1px;
+background: var(–border);
+width: 200px;
+}
+
+#contact h2 {
+font-size: clamp(32px, 5vw, 56px);
+margin-bottom: 20px;
+}
+
+#contact p {
+color: var(–text2);
+max-width: 480px;
+margin: 0 auto 48px;
+font-size: 15px;
+}
+
+.email-display {
+display: inline-flex;
+align-items: center;
+gap: 12px;
+font-family: var(–mono);
+font-size: 15px;
+color: var(–accent2);
+text-decoration: none;
+border: 1px solid var(–accent);
+padding: 16px 32px;
+position: relative;
+box-shadow: 0 0 18px rgba(120,47,64,0.35), 0 0 40px rgba(120,47,64,0.15), inset 0 0 12px rgba(120,47,64,0.08);
+animation: email-pulse 2.5s ease-in-out infinite;
+transition: box-shadow 0.3s, color 0.2s, border-color 0.2s;
+}
+
+.email-display:hover {
+border-color: var(–accent2);
+color: var(–accent2);
+box-shadow: 0 0 28px rgba(196,163,90,0.4), 0 0 60px rgba(196,163,90,0.2), inset 0 0 16px rgba(196,163,90,0.1);
+}
+
+@keyframes email-pulse {
+0%, 100% { box-shadow: 0 0 18px rgba(120,47,64,0.35), 0 0 40px rgba(120,47,64,0.15), inset 0 0 12px rgba(120,47,64,0.08); }
+50%       { box-shadow: 0 0 28px rgba(120,47,64,0.55), 0 0 60px rgba(120,47,64,0.25), inset 0 0 16px rgba(120,47,64,0.12); }
+}
+
+/* ── FOOTER ── */
+footer {
+position: relative;
+z-index: 1;
+border-top: 1px solid var(–border);
+padding: 24px 48px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+footer span {
+font-family: var(–mono);
+font-size: 11px;
+color: var(–text3);
+letter-spacing: 0.08em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+nav { padding: 16px 24px; }
+.nav-links { display: none; }
+#hero { padding: 100px 24px 80px; }
+section { padding: 72px 24px; }
+.exp-item { grid-template-columns: 1fr; gap: 16px; }
+footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
+#contact { padding: 80px 24px; }
+}
+
+/* ── HERO PHOTO ── */
+.hero-photo-wrap {
+position: absolute;
+right: 80px;
+top: 50%;
+transform: translateY(-50%);
+z-index: 2;
+}
+
+.hero-photo {
+width: 260px;
+height: 320px;
+object-fit: cover;
+object-position: center top;
+border: 2px solid var(–accent);
+box-shadow: 0 0 30px rgba(120,47,64,0.3), 0 0 60px rgba(120,47,64,0.1);
+display: block;
+}
+
+.hero-photo-wrap::before {
+content: ‘’;
+position: absolute;
+top: 12px;
+left: 12px;
+right: -12px;
+bottom: -12px;
+border: 1px solid var(–border2);
+z-index: -1;
+}
+
+@media (max-width: 900px) {
+.hero-photo-wrap { display: none; }
+}
+
+/* ── SCROLL PROGRESS BAR ── */
+#scroll-progress {
+position: fixed;
+top: 0; left: 0;
+height: 2px;
+width: 0%;
+background: linear-gradient(90deg, var(–accent), var(–accent2));
+z-index: 999;
+transition: width 0.05s linear;
+}
+
+/* ── STAT COUNTERS ── */
+.stats-row {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+margin: 48px 0 0;
+}
+
+.stat-box {
+background: var(–bg2);
+padding: 32px 24px;
+text-align: center;
+transition: background 0.2s;
+}
+
+.stat-box:hover { background: var(–bg3); }
+
+.stat-number {
+font-family: var(–display);
+font-size: 44px;
+font-weight: 800;
+color: var(–accent2);
+line-height: 1;
+margin-bottom: 8px;
+letter-spacing: -0.02em;
+}
+
+.stat-label {
+font-family: var(–mono);
+font-size: 11px;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(–text3);
+line-height: 1.5;
+}
+
+/* ── PARALLAX HERO GLOW ── */
+.hero-glow {
+position: absolute;
+top: 20%;
+right: 5%;
+width: 480px;
+height: 480px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(120,47,64,0.12) 0%, transparent 70%);
+pointer-events: none;
+will-change: transform;
+}
+
+.hero-glow-2 {
+position: absolute;
+bottom: 10%;
+right: 20%;
+width: 300px;
+height: 300px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(196,163,90,0.07) 0%, transparent 70%);
+pointer-events: none;
+will-change: transform;
+}
+
+/* ── ACTIVE NAV ── */
+.nav-links a.active { color: var(–accent2); }
+
+/* ── SECTION REVEAL LINE ── */
+.section-label {
+overflow: hidden;
+}
+
+/* ── CARD TILT ── */
+.stack-card, .project-card {
+will-change: transform;
+}
+
+/* ── TIMELINE DOT ── */
+.exp-item {
+position: relative;
+}
+
+.exp-item::before {
+content: ‘’;
+position: absolute;
+left: -24px;
+top: 44px;
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background: var(–accent);
+opacity: 0;
+transition: opacity 0.4s;
+}
+
+.exp-item.visible::before { opacity: 1; }
+
+/* ── CURSOR GLOW ── */
+#cursor-glow {
+position: fixed;
+width: 300px;
+height: 300px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(120,47,64,0.06) 0%, transparent 70%);
+pointer-events: none;
+z-index: 0;
+transform: translate(-50%, -50%);
+transition: opacity 0.3s;
+will-change: left, top;
+}
+
+/* ── TYPED CURSOR ── */
+.typed-cursor {
+display: inline-block;
+width: 3px;
+height: 0.85em;
+background: var(–accent2);
+margin-left: 4px;
+vertical-align: middle;
+animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+
+/* ── LETTER DROP ANIMATION ── */
+.letter-drop-wrap {
+display: inline;
+}
+
+.letter-drop-wrap .ld {
+display: inline-block;
+opacity: 0;
+transform: translateY(-40px) rotate(-4deg);
+transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.letter-drop-wrap.drop-active .ld {
+opacity: 1;
+transform: translateY(0) rotate(0deg);
+}
+
+/* space chars */
+.letter-drop-wrap .ld-space {
+display: inline-block;
+width: 0.28em;
+}
+
+/* ── ANIMATIONS ── */
+.fade-in {
+opacity: 0;
+transform: translateY(-28px) scaleY(0.92);
+transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0) scaleY(1);
+}
+
+/* Letter drop effect for section headers */
+.section-label .label-text {
+display: inline-block;
+}
+
+.section-label .label-text span {
+display: inline-block;
+opacity: 0;
+transform: translateY(-20px);
+transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-label.letters-visible .label-text span {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Hero title letter drop */
+h1 .word {
+display: inline-block;
+overflow: hidden;
+}
+
+h1 .letter {
+display: inline-block;
+opacity: 0;
+transform: translateY(-100%);
+transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+h1.letters-loaded .letter {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Stack card drop */
+.stack-card {
+transition: background 0.2s, opacity 0.45s cubic-bezier(0.22,1,0.36,1), transform 0.45s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Project card drop */
+.project-card {
+transition: border-color 0.2s, transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.45s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* status dot */
+.status-dot {
+display: inline-block;
+width: 7px;
+height: 7px;
+border-radius: 50%;
+background: var(–accent2);
+box-shadow: 0 0 0 0 rgba(196,163,90,0.4);
+animation: pulse 2s ease-in-out infinite;
+margin-right: 4px;
+}
+
+@keyframes pulse {
+0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.4); }
+50% { box-shadow: 0 0 0 5px rgba(196,163,90,0); }
+}
 </style>
+
 </head>
 <body>
 
@@ -874,6 +873,7 @@
 <div id="cursor-glow"></div>
 
 <!-- NAV -->
+
 <nav>
   <a href="#hero" class="nav-logo">Christopher Albrizio</a>
   <ul class="nav-links">
@@ -886,6 +886,7 @@
 </nav>
 
 <!-- HERO -->
+
 <section id="hero">
   <div class="hero-glow"></div>
   <div class="hero-glow-2"></div>
@@ -914,6 +915,7 @@
 </section>
 
 <!-- STATS -->
+
 <section id="stats" style="padding: 60px 48px; background: var(--bg2); border-top: 1px solid var(--border);">
   <div class="stats-row">
     <div class="stat-box fade-in">
@@ -943,8 +945,8 @@
   </div>
 </section>
 
-
 <!-- STACK -->
+
 <section id="stack">
   <div class="section-label">Core Technology Stack</div>
   <h2>Systems I Work In</h2>
@@ -979,61 +981,66 @@
 </section>
 
 <!-- PROJECTS -->
+
 <section id="projects">
   <div class="section-label">Selected Work</div>
   <h2>Key Projects</h2>
   <div class="projects-grid">
 
-    <div class="project-card fade-in">
-      <div class="project-tag">LOS · Doc Automation · Full Lifecycle</div>
-      <div class="project-title">Ocrolus–Encompass Integration Rollout</div>
-      <div class="project-desc">Owned the full lifecycle of the Ocrolus implementation — from initial configuration and deployment through UAT, role-specific training for all user groups, post-launch troubleshooting and support, and ongoing feature enhancement adoption. Diagnosed and resolved adoption failures, rebuilt training materials, and established the correct doc upload and income calculation pathway across the organization.</div>
-      <ul class="project-outcomes">
-        <li>Served as primary strategic input for implementation direction — all user workflows designed and built by me; management trusted me to architect a plan that fit within existing operations</li>
-        <li>Onboarded 80+ users across MLO, MLP, Processor, Underwriter, Operations, and Management teams; 200+ loans/month through platform</li>
-        <li>Achieved 95% adoption among processors/underwriters and 75% MLO adoption in first rollout cycle</li>
-        <li>Designated institution-wide SME for both Ocrolus and nCino SimpleNexus — primary escalation point and expert resource for all user groups: MLOs, MLPs, Processors, Underwriters, Operations Managers, and Sales Managers</li>
-        <li>Created in-depth income calculation and transaction analysis guides used across all roles</li>
-        <li>Drove adoption of Fannie Mae validated income calculator tools — trained all user groups to identify Fannie Mae and Freddie Mac rep &amp; warrant relief eligibility, contributing to a 225% increase in rep &amp; warrant relief for the institution</li>
-      </ul>
-    </div>
+```
+<div class="project-card fade-in">
+  <div class="project-tag">LOS · Doc Automation · Full Lifecycle</div>
+  <div class="project-title">Ocrolus–Encompass Integration Rollout</div>
+  <div class="project-desc">Owned the full lifecycle of the Ocrolus implementation — from initial configuration and deployment through UAT, role-specific training for all user groups, post-launch troubleshooting and support, and ongoing feature enhancement adoption. Diagnosed and resolved adoption failures, rebuilt training materials, and established the correct doc upload and income calculation pathway across the organization.</div>
+  <ul class="project-outcomes">
+    <li>Served as primary strategic input for implementation direction — all user workflows designed and built by me; management trusted me to architect a plan that fit within existing operations</li>
+    <li>Onboarded 80+ users across MLO, MLP, Processor, Underwriter, Operations, and Management teams; 200+ loans/month through platform</li>
+    <li>Achieved 95% adoption among processors/underwriters and 75% MLO adoption in first rollout cycle</li>
+    <li>Designated institution-wide SME for both Ocrolus and nCino SimpleNexus — primary escalation point and expert resource for all user groups: MLOs, MLPs, Processors, Underwriters, Operations Managers, and Sales Managers</li>
+    <li>Created in-depth income calculation and transaction analysis guides used across all roles</li>
+    <li>Drove adoption of Fannie Mae validated income calculator tools — trained all user groups to identify Fannie Mae and Freddie Mac rep &amp; warrant relief eligibility, contributing to a 225% increase in rep &amp; warrant relief for the institution</li>
+  </ul>
+</div>
 
 
 
-    <div class="project-card fade-in">
-      <div class="project-tag">Systems Implementation · Full Lifecycle Ownership</div>
-      <div class="project-title">SimpleNexus POS — Configure, Deploy, Test, Train, Support & Enhance</div>
-      <div class="project-desc">Owned the complete SimpleNexus lifecycle — configuring the platform, coordinating deployment, executing end-to-end UAT and regression testing, delivering role-specific training for all user groups (MLOs, MLPs, Processors, Operations Managers, Sales Managers), providing ongoing troubleshooting support post-launch, and continuously evaluating and rolling out feature enhancements in partnership with nCino.</div>
-      <ul class="project-outcomes">
-        <li>Executed full UAT through production: authored test scripts, ran scenario-based cases, validated data integrity at each handoff — reducing system errors by 20% and accelerating release cycles by 15%</li>
-        <li>Diagnosed post-launch integration failures including doc routing mismatches, missing eFolder items, and submission sync errors</li>
-        <li>Built role-specific FAQ guides for recurring MLO, MLP, Processor, Underwriter, and Operations issues — reducing repeat escalations</li>
-        <li>Designed and delivered role-specific training for all user groups: MLOs (submission workflow), MLPs/processors (doc queue management), and borrower-facing staff (portal guidance)</li>
-        <li>Standardized MLO communication around borrower portal submissions and document status visibility</li>
-        <li>Mapped and documented the full SimpleNexus → Ocrolus → eFolder workflow as a reference artifact for onboarding and audits</li>
-      </ul>
-    </div>
+<div class="project-card fade-in">
+  <div class="project-tag">Systems Implementation · Full Lifecycle Ownership</div>
+  <div class="project-title">SimpleNexus POS — Configure, Deploy, Test, Train, Support & Enhance</div>
+  <div class="project-desc">Owned the complete SimpleNexus lifecycle — configuring the platform, coordinating deployment, executing end-to-end UAT and regression testing, delivering role-specific training for all user groups (MLOs, MLPs, Processors, Operations Managers, Sales Managers), providing ongoing troubleshooting support post-launch, and continuously evaluating and rolling out feature enhancements in partnership with nCino.</div>
+  <ul class="project-outcomes">
+    <li>Executed full UAT through production: authored test scripts, ran scenario-based cases, validated data integrity at each handoff — reducing system errors by 20% and accelerating release cycles by 15%</li>
+    <li>Performed QC for all major ICE Encompass releases — creating test plans in ServiceNow Test Lab, executing test scripts in the QC environment, logging defects, and escalating findings to QC manager for production sign-off</li>
+    <li>Diagnosed post-launch integration failures including doc routing mismatches, missing eFolder items, and submission sync errors</li>
+    <li>Built role-specific FAQ guides for recurring MLO, MLP, Processor, Underwriter, and Operations issues — reducing repeat escalations</li>
+    <li>Designed and delivered role-specific training for all user groups: MLOs (submission workflow), MLPs/processors (doc queue management), and borrower-facing staff (portal guidance)</li>
+    <li>Standardized MLO communication around borrower portal submissions and document status visibility</li>
+    <li>Mapped and documented the full SimpleNexus → Ocrolus → eFolder workflow as a reference artifact for onboarding and audits</li>
+  </ul>
+</div>
 
-    <div class="project-card fade-in">
-      <div class="project-tag">Training · Knowledge Management</div>
-      <div class="project-title">Rollout Communications, Quick References & Training Program</div>
-      <div class="project-desc">Designed and executed full rollout communication strategies for each platform implementation — producing go-live announcements for executive leadership and management, quick reference guides for all staff, and conducting direct pre-launch meetings with department heads across Underwriting, Processing, Operations, Closing, and Compliance. Role-specific training delivered for every user group across the organization.</div>
-      <ul class="project-outcomes">
-        <li>Authored and distributed go-live announcements to management and all-staff across UW, Processing, Operations, Closing, and Compliance</li>
-        <li>Produced role-specific quick reference guides for MLOs, MLPs, Processors, Underwriters, Operations Managers, and Sales Managers</li>
-        <li>Conducted direct pre-launch briefings with department management and team leads across all affected teams</li>
-        <li>25% increase in system proficiency and adoption across trained teams</li>
-        <li>Ongoing refresher trainings for role-specific groups and all-org sessions; regular Q&amp;A calls by role and org-wide</li>
-        <li>Scribe-based step-by-step tutorials and Snagit video recordings for asynchronous reference</li>
-        <li>Delivered in-person, Teams, and Zoom training sessions across all user groups</li>
-        <li>90% same-day support resolution rate maintained post-launch across all platforms</li>
-      </ul>
-    </div>
+<div class="project-card fade-in">
+  <div class="project-tag">Training · Knowledge Management</div>
+  <div class="project-title">Rollout Communications, Quick References & Training Program</div>
+  <div class="project-desc">Designed and executed full rollout communication strategies for each platform implementation — producing go-live announcements for executive leadership and management, quick reference guides for all staff, and conducting direct pre-launch meetings with department heads across Underwriting, Processing, Operations, Closing, and Compliance. Role-specific training delivered for every user group across the organization.</div>
+  <ul class="project-outcomes">
+    <li>Authored and distributed go-live announcements to management and all-staff across UW, Processing, Operations, Closing, and Compliance</li>
+    <li>Produced role-specific quick reference guides for MLOs, MLPs, Processors, Underwriters, Operations Managers, and Sales Managers</li>
+    <li>Conducted direct pre-launch briefings with department management and team leads across all affected teams</li>
+    <li>25% increase in system proficiency and adoption across trained teams</li>
+    <li>Ongoing refresher trainings for role-specific groups and all-org sessions; regular Q&amp;A calls by role and org-wide</li>
+    <li>Scribe-based step-by-step tutorials and Snagit video recordings for asynchronous reference</li>
+    <li>Delivered in-person, Teams, and Zoom training sessions across all user groups</li>
+    <li>90% same-day support resolution rate maintained post-launch across all platforms</li>
+  </ul>
+</div>
+```
 
   </div>
 </section>
 
 <!-- CAPABILITIES -->
+
 <section id="capabilities">
   <div class="section-label">What I Bring</div>
   <h2>Capabilities</h2>
@@ -1053,6 +1060,7 @@
       <ul class="caps-list">
         <li><strong>Gap Analysis</strong> Adoption failure diagnosis & root cause identification</li>
         <li><strong>Regulatory Compliance</strong> Policy alignment, documentation & audit support</li>
+        <li><strong>ServiceNow (SNOW)</strong> Defect logging, tracking, and release management</li>
         <li><strong>Requirements Gathering</strong> Business rules documentation & stakeholder alignment</li>
         <li><strong>Data Validation</strong> Income verification accuracy & record reconciliation</li>
         <li><strong>Regulatory Reporting</strong> Compliance deliverable design & documentation</li>
@@ -1082,6 +1090,7 @@
 </section>
 
 <!-- EXPERIENCE -->
+
 <section id="experience">
   <div class="section-label">Work History</div>
   <h2>Experience</h2>
@@ -1176,6 +1185,7 @@
 </section>
 
 <!-- CONTACT -->
+
 <section id="contact">
   <div class="section-label">Get In Touch</div>
   <h2>Let's Talk</h2>
@@ -1193,6 +1203,7 @@
 </section>
 
 <!-- FOOTER -->
+
 <footer>
   <span>Christopher Albrizio · BSA / Implementation &amp; Training Lead · Tallahassee, FL</span>
   <span>Built for portability — deploy anywhere</span>
@@ -1471,5 +1482,6 @@
   });
 
 </script>
+
 </body>
 </html>
