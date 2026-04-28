@@ -22,7 +22,7 @@ I don't just implement platforms — I design the workflows, train every user gr
 | **Ocrolus** | Implementation SME, income calc, Fannie Mae validated tools |
 | **Finicity** | VOA/VOIE integration |
 | **The Work Number · Equifax** | VOIE integration |
-| **Encompass Partner Connect** | 23 integrations deployed |
+| **Encompass Partner Connect** | 25+ integrations deployed |
 
 ### Partner Connect Integrations include:
 Optimal Blue · DataVerify · Mortgage Insurance Center · Halcyon 8821 Tax Services · ServiceLink National Flood · Salesforce-to-Encompass · Finicity · The Work Number by Equifax · and more
@@ -35,7 +35,7 @@ Optimal Blue · DataVerify · Mortgage Insurance Center · Halcyon 8821 Tax Serv
 |---|---|
 | 🏦 Years in Mortgage | **14+** |
 | 👥 Users Onboarded | **80+** |
-| 🔗 EPC Integrations Deployed | **23** |
+| 🔗 EPC Integrations Deployed | **25+** |
 | 🧪 QC Tool | **ServiceNow Test Lab** |
 | 📄 Loans / Month Through Platform | **200+** |
 | ✅ Processor & UW Adoption | **95%** |
