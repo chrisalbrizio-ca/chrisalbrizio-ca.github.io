@@ -1183,10 +1183,11 @@
   <h2>Let's Talk</h2>
   <p>Open to BSA, implementation consultant, mortgage tech product, and adjacent roles. Based in Tallahassee, FL — open to remote.</p>
   <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center;">
-  <a href="mailto:chrisalbrizio@gmail.com" class="email-display">
+  <a href="#" class="email-display" onclick="this.href='mai'+'lto:'+atob('Y2hyaXNhbGJyaXppb0BnbWFpbC5jb20=')">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-    chrisalbrizio@gmail.com
+    <span id="em"></span>
   </a>
+<script>document.getElementById("em").textContent=atob("Y2hyaXNhbGJyaXppb0BnbWFpbC5jb20=");</script>
   <a href="https://www.linkedin.com/in/chris-albrizio-2b9620403" target="_blank" class="email-display" style="animation-delay:0.4s;">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
     LinkedIn
@@ -1472,6 +1473,12 @@
     setTimeout(() => triggerLetterDrop(el), 300);
   });
 
+</script>
+<script>
+  // Render obfuscated email spans
+  document.querySelectorAll('.eml').forEach(el => {
+    el.textContent = atob(el.dataset.e);
+  });
 </script>
 </body>
 </html>
