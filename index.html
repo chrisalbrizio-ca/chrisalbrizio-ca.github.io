@@ -46,7 +46,6 @@
     overflow-x: hidden;
   }
 
-  /* Grid noise texture */
   body::before {
     content: '';
     position: fixed;
@@ -59,7 +58,6 @@
     z-index: 0;
   }
 
-  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -99,7 +97,6 @@
 
   .nav-links a:hover { color: var(--text); }
 
-  /* ── HERO ── */
   #hero {
     position: relative;
     min-height: 100vh;
@@ -208,7 +205,6 @@
 
   .btn-secondary:hover { color: var(--text); border-color: var(--text3); }
 
-  /* ── SCROLL INDICATOR ── */
   .scroll-hint {
     position: absolute;
     bottom: 40px;
@@ -246,7 +242,6 @@
     100% { left: 100%; }
   }
 
-  /* ── SECTIONS ── */
   section {
     position: relative;
     z-index: 1;
@@ -283,7 +278,6 @@
     margin-bottom: 16px;
   }
 
-  /* ── STACK SECTION ── */
   #stack { background: var(--bg); }
 
   .stack-grid {
@@ -326,7 +320,6 @@
     line-height: 1.6;
   }
 
-  /* ── PROJECTS ── */
   #projects { background: var(--bg2); }
 
   .projects-grid {
@@ -406,7 +399,6 @@
     flex-shrink: 0;
   }
 
-  /* ── CAPABILITIES ── */
   #capabilities { background: var(--bg); }
 
   .caps-grid {
@@ -453,7 +445,6 @@
     flex-shrink: 0;
   }
 
-  /* ── EXPERIENCE ── */
   #experience { background: var(--bg2); }
 
   .exp-item {
@@ -516,7 +507,6 @@
     letter-spacing: 0.05em;
   }
 
-  /* ── CONTACT ── */
   #contact {
     background: var(--bg);
     text-align: center;
@@ -572,7 +562,6 @@
     50%       { box-shadow: 0 0 28px rgba(120,47,64,0.55), 0 0 60px rgba(120,47,64,0.25), inset 0 0 16px rgba(120,47,64,0.12); }
   }
 
-  /* ── FOOTER ── */
   footer {
     position: relative;
     z-index: 1;
@@ -590,7 +579,6 @@
     letter-spacing: 0.08em;
   }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
@@ -601,9 +589,6 @@
     #contact { padding: 80px 24px; }
   }
 
-
-
-  /* ── HERO PHOTO ── */
   .hero-photo-wrap {
     position: absolute;
     right: 80px;
@@ -637,7 +622,6 @@
     .hero-photo-wrap { display: none; }
   }
 
-  /* ── SCROLL PROGRESS BAR ── */
   #scroll-progress {
     position: fixed;
     top: 0; left: 0;
@@ -648,7 +632,6 @@
     transition: width 0.05s linear;
   }
 
-  /* ── STAT COUNTERS ── */
   .stats-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -686,7 +669,6 @@
     line-height: 1.5;
   }
 
-  /* ── PARALLAX HERO GLOW ── */
   .hero-glow {
     position: absolute;
     top: 20%;
@@ -711,20 +693,16 @@
     will-change: transform;
   }
 
-  /* ── ACTIVE NAV ── */
   .nav-links a.active { color: var(--accent2); }
 
-  /* ── SECTION REVEAL LINE ── */
   .section-label {
     overflow: hidden;
   }
 
-  /* ── CARD TILT ── */
   .stack-card, .project-card {
     will-change: transform;
   }
 
-  /* ── TIMELINE DOT ── */
   .exp-item {
     position: relative;
   }
@@ -744,7 +722,6 @@
 
   .exp-item.visible::before { opacity: 1; }
 
-  /* ── CURSOR GLOW ── */
   #cursor-glow {
     position: fixed;
     width: 300px;
@@ -758,7 +735,6 @@
     will-change: left, top;
   }
 
-  /* ── TYPED CURSOR ── */
   .typed-cursor {
     display: inline-block;
     width: 3px;
@@ -774,8 +750,6 @@
     50% { opacity: 0; }
   }
 
-
-  /* ── LETTER DROP ANIMATION ── */
   .letter-drop-wrap {
     display: inline;
   }
@@ -793,13 +767,11 @@
     transform: translateY(0) rotate(0deg);
   }
 
-  /* space chars */
   .letter-drop-wrap .ld-space {
     display: inline-block;
     width: 0.28em;
   }
 
-  /* ── ANIMATIONS ── */
   .fade-in {
     opacity: 0;
     transform: translateY(-28px) scaleY(0.92);
@@ -812,7 +784,6 @@
     transform: translateY(0) scaleY(1);
   }
 
-  /* Letter drop effect for section headers */
   .section-label .label-text {
     display: inline-block;
   }
@@ -829,7 +800,6 @@
     transform: translateY(0);
   }
 
-  /* Hero title letter drop */
   h1 .word {
     display: inline-block;
     overflow: hidden;
@@ -847,17 +817,14 @@
     transform: translateY(0);
   }
 
-  /* Stack card drop */
   .stack-card {
     transition: background 0.2s, opacity 0.45s cubic-bezier(0.22,1,0.36,1), transform 0.45s cubic-bezier(0.22,1,0.36,1);
   }
 
-  /* Project card drop */
   .project-card {
     transition: border-color 0.2s, transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.45s cubic-bezier(0.22,1,0.36,1);
   }
 
-  /* status dot */
   .status-dot {
     display: inline-block;
     width: 7px;
@@ -873,7 +840,6 @@
     0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.4); }
     50% { box-shadow: 0 0 0 5px rgba(196,163,90,0); }
   }
-  /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -962,7 +928,7 @@
     <div class="stack-card fade-in">
       <div class="stack-role">Loan Origination System</div>
       <div class="stack-name">Encompass Desktop</div>
-      <div class="stack-desc">ICE Mortgage Technology LOS. In Encompass since 2014, the first processor trusted with the system at implementation. Full lifecycle ownership: configuration, deployment, integration testing, end-user training, ongoing troubleshooting support, and feature enhancement rollouts across 25+ Partner Connect integrations. Built custom forms and business logic using SSF and JavaScript.</div>
+      <div class="stack-desc">ICE Mortgage Technology LOS. In Encompass since 2014, the first processor trusted with the system at implementation. Full lifecycle ownership: configuration, deployment, integration testing, end-user training, ongoing troubleshooting support, and feature enhancement rollouts across 25+ Partner Connect integrations, including Finicity, DataVerify, Optimal Blue, and Halcyon 8821 Tax Services. Built custom forms and business logic using SSF and JavaScript.</div>
     </div>
     <div class="stack-card fade-in">
       <div class="stack-role">Point of Sale / Borrower Portal</div>
@@ -972,7 +938,7 @@
     <div class="stack-card fade-in">
       <div class="stack-role">Document Automation</div>
       <div class="stack-name">Ocrolus</div>
-      <div class="stack-desc">AI-powered doc processing and income calculation. Full lifecycle ownership: configuration, deployment, UAT, role-specific training across all user groups, ongoing troubleshooting support, and continuous feature enhancement adoption including Fannie Mae validated income calculator tools.</div>
+      <div class="stack-desc">AI-powered doc processing and income calculation. Full lifecycle ownership: configuration, deployment, UAT, role-specific training across all user groups, ongoing troubleshooting support, and continuous feature enhancement adoption including Fannie Mae validated income calculator tools. Direct product feedback has shaped platform-wide notification improvements.</div>
     </div>
     <div class="stack-card fade-in">
       <div class="stack-role">Verification of Assets</div>
@@ -982,7 +948,7 @@
     <div class="stack-card fade-in">
       <div class="stack-role">Verification of Income & Employment</div>
       <div class="stack-name">Equifax · Credit Products</div>
-      <div class="stack-desc">Designated SME for the full Equifax credit product suite: hard and soft credit pulls, Score Navigator, credit restores, and The Work Number for VOIE. Owned training, testing, and implementation across teams, with employer name matching logic, duplicate record resolution, and integration with paystub-based income verification.</div>
+      <div class="stack-desc">Designated SME for the full Equifax credit product suite: hard and soft credit pulls, Score Navigator, credit restores, and The Work Number for VOIE. Owned training, testing, and implementation across teams, with employer name matching logic, duplicate record resolution, and integration with paystub-based income verification. Identified and recommended a direct-source verification vendor projected to cut monthly VOIE costs by approximately 84 percent, implementation pending.</div>
     </div>
 
   </div>
@@ -1005,10 +971,21 @@
         <li>Designated institution-wide SME for both Ocrolus and nCino SimpleNexus — primary escalation point and expert resource for all user groups: MLOs, MLPs, Processors, Underwriters, Operations Managers, and Sales Managers</li>
         <li>Created in-depth income calculation and transaction analysis guides used across all roles</li>
         <li>Drove adoption of Fannie Mae validated income calculator tools — trained all user groups to identify Fannie Mae and Freddie Mac rep &amp; warrant relief eligibility, contributing to a measurable increase in rep &amp; warrant relief for the institution</li>
+        <li>Identified a gap in Ocrolus's automated completion emails and raised it with the vendor, resulting in a platform-wide notification update adopted for all customers</li>
       </ul>
     </div>
 
-
+    <div class="project-card fade-in">
+      <div class="project-tag">Vendor Evaluation · Ecosystem Integration</div>
+      <div class="project-title">Vendor Evaluation & Multi-System Orchestration</div>
+      <div class="project-desc">Regularly sought out by mortgage technology vendors as a reference customer, case study participant, and beta tester, and invited into direct feedback sessions alongside vendor product teams and peer institutions. Runs structured, head-to-head vendor evaluations before making sourcing recommendations to senior leadership, and owns full testing of how multiple vendor platforms function together as one system for end users.</div>
+      <ul class="project-outcomes">
+        <li>Identified and recommended a direct-source verification vendor to replace The Work Number, projected to cut monthly VOIE costs by approximately 84 percent (~$22,000/month), implementation pending</li>
+        <li>Ran head-to-head testing of two competing vendors for a 4506-C tax transcript verification sourcing decision alongside the existing ICE CoreLogic integration, delivering a data-backed recommendation to senior management</li>
+        <li>Orchestrated full ecosystem integration testing across three separate vendor platforms — Encompass, nCino SimpleNexus, and Ocrolus — validating that a single loan could move through origination, point of sale, and document processing without any breakage between systems</li>
+        <li>Regularly participates in one-off feedback sessions and cross-institution meetings directly alongside vendor product teams and other lender clients</li>
+      </ul>
+    </div>
 
     <div class="project-card fade-in">
       <div class="project-tag">Credit Data · SME · Training & Vendor Coordination</div>
@@ -1023,8 +1000,6 @@
       </ul>
     </div>
 
-
-
     <div class="project-card fade-in">
       <div class="project-tag">Systems Implementation · Full Lifecycle Ownership</div>
       <div class="project-title">SimpleNexus POS — Configure, Deploy, Test, Train, Support & Enhance</div>
@@ -1032,6 +1007,7 @@
       <ul class="project-outcomes">
         <li>Executed full UAT through production: authored test scripts, ran scenario-based cases, validated data integrity at each handoff — contributing to measurable reductions in system errors and accelerated release cycles</li>
         <li>Performed QC for all major ICE Encompass releases — creating test plans in ServiceNow Test Lab, executing test scripts in the QC environment, logging defects, and escalating findings to QC manager for production sign-off</li>
+        <li>Runs an iterative, Agile-style release process for every major update: reviewing release notes to assess impact, sorting affected work by team into a task list, holding weekly check-ins during regression testing, and continuously updating process documentation based on what's learned each release</li>
         <li>Diagnosed post-launch integration failures including doc routing mismatches, missing eFolder items, and submission sync errors</li>
         <li>Built role-specific FAQ guides for recurring MLO, MLP, Processor, Underwriter, and Operations issues — reducing repeat escalations</li>
         <li>Designed and delivered role-specific training for all user groups: MLOs (submission workflow), MLPs/processors (doc queue management), and borrower-facing staff (portal guidance)</li>
@@ -1050,7 +1026,7 @@
         <li>Conducted direct pre-launch briefings with department management and team leads across all affected teams</li>
         <li>Measurable increases in system proficiency and adoption across trained teams, tracked through support ticket volume and escalation frequency</li>
         <li>Ongoing refresher trainings for role-specific groups and all-org sessions; regular Q&amp;A calls by role and org-wide</li>
-        <li>Scribe-based step-by-step tutorials and Snagit video recordings for asynchronous reference</li>
+        <li>Scribe-based step-by-step tutorials and Snagit video recordings for asynchronous reference, including cross-role tutorials for closers and settlement agents so each role can see what the other does and guide each other through handoffs</li>
         <li>Delivered in-person, Teams, and Zoom training sessions across all user groups</li>
         <li>Strong same-day support resolution rate maintained post-launch across all platforms</li>
       </ul>
@@ -1070,9 +1046,10 @@
         <li><strong>LOS Configuration</strong> Encompass Desktop workflow & eFolder design</li>
         <li><strong>POS Integration</strong> nCino SimpleNexus deployment & handoff mapping</li>
         <li><strong>Doc Automation</strong> Ocrolus income calc, Inspect, Fannie Mae calc</li>
-        <li><strong>VOIE / VOA</strong> Work Number & Finicity integration</li>
+        <li><strong>VOIE / VOA</strong> Work Number & Finicity integration; vendor evaluation for direct-source alternatives</li>
         <li><strong>Credit Data Partnerships</strong> Equifax SME — training, testing, vendor coordination & renegotiation support</li>
         <li><strong>Workflow Mapping</strong> End-to-end loan lifecycle process design</li>
+        <li><strong>Vendor Evaluation</strong> Head-to-head testing, discovery-to-decision vendor recommendations, reference/beta program participation</li>
       </ul>
     </div>
     <div class="caps-group fade-in">
@@ -1086,6 +1063,9 @@
         <li><strong>Requirements Gathering</strong> Structured discovery with stakeholders across every team before each implementation, translated into business rules and configuration</li>
         <li><strong>Data Validation</strong> Income verification accuracy & record reconciliation</li>
         <li><strong>Regulatory Reporting</strong> Compliance deliverable design & documentation</li>
+        <li><strong>Strategic Planning</strong> Multi-platform rollout sequencing, testing plan design, and regression testing coverage</li>
+        <li><strong>Change Management</strong> Stakeholder alignment and staggered vs. continuous rollout planning based on business impact</li>
+        <li><strong>Iterative Release Practices</strong> Backlog-style task management from release notes, weekly cadence check-ins, continuous process documentation</li>
       </ul>
     </div>
     <div class="caps-group fade-in">
@@ -1093,7 +1073,7 @@
       <ul class="caps-list">
         <li><strong>Curriculum Design</strong> Role-based training for MLO, MLP, processor tracks</li>
         <li><strong>Quick References</strong> Branded one-page guides and job aids</li>
-        <li><strong>Scribe Tutorials</strong> Step-by-step platform walkthroughs</li>
+        <li><strong>Scribe Tutorials</strong> Step-by-step platform walkthroughs, including cross-role tutorials for closers and settlement agents</li>
         <li><strong>Live Facilitation</strong> Teams & Zoom-based training delivery</li>
         <li><strong>Adoption Tracking</strong> Measuring utilization and identifying blockers</li>
       </ul>
@@ -1101,7 +1081,7 @@
     <div class="caps-group fade-in">
       <h3>Tools & Platforms</h3>
       <ul class="caps-list">
-        <li><strong>Office 365</strong> Word, Excel, PowerPoint, Teams</li>
+        <li><strong>Software</strong> Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Microsoft Teams, Visio</li>
         <li><strong>Documentation</strong> Scribe, Snagit, Zoom</li>
         <li><strong>Compliance Tools</strong> Regulatory documentation & audit reporting</li>
         <li><strong>AI-Assisted Analysis</strong> LLM-assisted workflow design & doc automation</li>
@@ -1124,7 +1104,7 @@
     <div>
       <div class="exp-title">BSA / Implementation &amp; Training Lead</div>
       <p class="exp-desc">
-        Institution-wide implementation lead for Ocrolus, nCino SimpleNexus, and Encompass Partner Connect — owning the full lifecycle: configuration, deployment, integration testing, role-specific training, post-launch troubleshooting, and ongoing feature enhancement rollout. Designated SME for both Ocrolus and nCino SimpleNexus. Configured and deployed 25+ Encompass Partner Connect integrations including Finicity, The Work Number by Equifax, DataVerify, Optimal Blue (pricing engine), Mortgage Insurance Center, Halcyon 8821 Tax Services, ServiceLink National Flood, and Salesforce-to-Encompass. Trained 80+ users across multiple systems including Ocrolus, nCino SimpleNexus, and Encompass Partner Connect integrations — MLOs, MLPs, Processors, Underwriters, Operations Managers, and Sales Managers — supporting 200+ loans per month. Drove strong adoption across processor, underwriter, and MLO roles within the first rollout cycle. Served as a trusted advisor during vendor contract renegotiations at leadership's request, surfacing performance and SLA shortfalls, undelivered feature promises, and product limitations from workflow use. Maintained consistently high system uptime with a strong same-day support resolution rate.
+        Institution-wide implementation lead for Ocrolus, nCino SimpleNexus, and Encompass Partner Connect — owning the full lifecycle: configuration, deployment, integration testing, role-specific training, post-launch troubleshooting, and ongoing feature enhancement rollout. Designated SME for both Ocrolus and nCino SimpleNexus. Configured and deployed 25+ Encompass Partner Connect integrations including Finicity, The Work Number by Equifax, DataVerify, Optimal Blue (pricing engine), Mortgage Insurance Center, Halcyon 8821 Tax Services, ServiceLink National Flood, and Salesforce-to-Encompass. Trained 80+ users across multiple systems including Ocrolus, nCino SimpleNexus, and Encompass Partner Connect integrations — MLOs, MLPs, Processors, Underwriters, Operations Managers, and Sales Managers — supporting 200+ loans per month. Drove strong adoption across processor, underwriter, and MLO roles within the first rollout cycle. Regularly sought out by mortgage technology vendors as a reference customer, case study participant, and beta tester. Served as a trusted advisor during vendor contract renegotiations at leadership's request, surfacing performance and SLA shortfalls, undelivered feature promises, and product limitations from workflow use. Maintained consistently high system uptime with a strong same-day support resolution rate.
       </p>
       <div class="exp-tags">
         <span class="tag">Encompass</span>
@@ -1132,6 +1112,7 @@
         <span class="tag">Ocrolus</span>
         <span class="tag">Finicity</span>
         <span class="tag">Work Number</span>
+        <span class="tag">Vendor Evaluation</span>
         <span class="tag">Training Design</span>
         <span class="tag">Process Improvement</span>
       </div>
@@ -1230,7 +1211,6 @@
 </footer>
 
 <script>
-  // ── SCROLL PROGRESS ──
   const progressBar = document.getElementById('scroll-progress');
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
@@ -1238,14 +1218,12 @@
     progressBar.style.width = (scrolled / maxScroll * 100) + '%';
   }, { passive: true });
 
-  // ── CURSOR GLOW ──
   const cursorGlow = document.getElementById('cursor-glow');
   document.addEventListener('mousemove', (e) => {
     cursorGlow.style.left = e.clientX + 'px';
     cursorGlow.style.top = e.clientY + 'px';
   }, { passive: true });
 
-  // ── HERO PARALLAX GLOW ──
   const heroGlow = document.querySelector('.hero-glow');
   const heroGlow2 = document.querySelector('.hero-glow-2');
   window.addEventListener('scroll', () => {
@@ -1254,7 +1232,6 @@
     if (heroGlow2) heroGlow2.style.transform = `translateY(${y * 0.08}px)`;
   }, { passive: true });
 
-  // ── ACTIVE NAV HIGHLIGHT ──
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   const navObserver = new IntersectionObserver((entries) => {
@@ -1268,7 +1245,6 @@
   }, { threshold: 0.3 });
   sections.forEach(s => navObserver.observe(s));
 
-  // ── LETTER DROP — section labels ──
   function splitLetters(el) {
     const text = el.textContent;
     el.innerHTML = '<span class="label-text">' +
@@ -1298,7 +1274,6 @@
 
   document.querySelectorAll('.section-label').forEach(el => labelObserver.observe(el));
 
-  // ── FADE-IN DROP — cards and blocks ──
   const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -1312,7 +1287,6 @@
     });
   }, { threshold: 0.08 });
 
-  // Stagger cards within each grid
   document.querySelectorAll('.stack-grid, .projects-grid').forEach(grid => {
     grid.querySelectorAll('.fade-in').forEach((el, i) => {
       el.dataset.delay = i;
@@ -1320,25 +1294,21 @@
     });
   });
 
-  // Experience items stagger
   document.querySelectorAll('.exp-item').forEach((el, i) => {
     el.dataset.delay = i;
     fadeObserver.observe(el);
   });
 
-  // Caps groups stagger
   document.querySelectorAll('.caps-group').forEach((el, i) => {
     el.dataset.delay = i;
     fadeObserver.observe(el);
   });
 
-  // Remaining fade-ins
   document.querySelectorAll('.fade-in').forEach((el, i) => {
     if (!el.dataset.delay) el.dataset.delay = i % 4;
     fadeObserver.observe(el);
   });
 
-  // ── COUNTER ANIMATION — replays every time stat box enters view ──
   function animateCounter(counter) {
     const target = +counter.dataset.target;
     const suffix = counter.dataset.suffix || '';
@@ -1373,7 +1343,6 @@
     counterObserver.observe(box);
   });
 
-  // ── SUBTLE CARD TILT ON HOVER ──
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -1386,7 +1355,6 @@
     });
   });
 
-  // ── TYPED HERO SUBTITLE ──
   const heroSub = document.querySelector('.hero-sub');
   if (heroSub) {
     const text = heroSub.textContent;
@@ -1405,13 +1373,11 @@
     setTimeout(type, 600);
   }
 
-  // ── LETTER DROP — applies to headings and hero text ──
   function wrapLetters(el) {
     if (el.dataset.letterWrapped) return;
     el.dataset.letterWrapped = '1';
     const walk = (node) => {
       if (node.nodeType === 3) {
-        // text node
         const text = node.textContent;
         const frag = document.createDocumentFragment();
         const wrap = document.createElement('span');
@@ -1446,13 +1412,11 @@
       });
     });
 
-    // Flatten all letters across all wraps in order
     const allLetters = Array.from(el.querySelectorAll('.ld'));
     allLetters.forEach((l, i) => {
       l.style.transitionDelay = (i * 22) + 'ms';
     });
 
-    // Trigger
     requestAnimationFrame(() => {
       wraps.forEach(wrap => wrap.classList.add('drop-active'));
     });
@@ -1466,7 +1430,6 @@
     });
   }
 
-  // Apply letter drop to headers and capability titles
   const letterTargets = [
     ...document.querySelectorAll('h1'),
     ...document.querySelectorAll('h2'),
@@ -1481,7 +1444,6 @@
 
   letterTargets.forEach(el => wrapLetters(el));
 
-  // Trigger on scroll in/out
   const letterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1494,14 +1456,12 @@
 
   letterTargets.forEach(el => letterObserver.observe(el));
 
-  // Trigger hero immediately on load
   document.querySelectorAll('h1, .hero-sub').forEach(el => {
     setTimeout(() => triggerLetterDrop(el), 300);
   });
 
 </script>
 <script>
-  // Render obfuscated email spans
   document.querySelectorAll('.eml').forEach(el => {
     el.textContent = atob(el.dataset.e);
   });
